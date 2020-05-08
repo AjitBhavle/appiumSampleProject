@@ -5,12 +5,9 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.SkipException;
@@ -50,6 +47,8 @@ public class BaseClass {
 
 		driver = new FirefoxDriver();*/
 		try {
+			File f= new File("src");
+			File fs=new File(f,"inventery.apk");
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability(MobileCapabilityType.APPIUM_VERSION, " ");
 			capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator1");
@@ -59,7 +58,7 @@ public class BaseClass {
 			capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Nexus4 with android 7.1");
 			capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 60);
 			//capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
-			capabilities.setCapability(MobileCapabilityType.APP, "D:\\AjitAltimetrik\\PracticeSession\\MobileAutomaion\\Massc-debug.apk");
+			capabilities.setCapability(MobileCapabilityType.APP, fs.getAbsolutePath());
 			URL url=new URL("http://127.0.0.1:4723/wd/hub");
 			driver =new AppiumDriver<MobileElement>(url,capabilities);
 		}catch(Exception e) {
